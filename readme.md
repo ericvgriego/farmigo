@@ -4,13 +4,13 @@ This is my engine. Uses Term Frequency on a included data set of 1,000,000 produ
 
 Note the input file must contain two specific headers: item_id & text
 
-item_id is a unique identifier for a given product description. product descriptions are detailed in the text values.
+>item_id is a unique identifier for a given product description. product descriptions are detailed in the text values.
 i.e. item_id = 568, text = Vegan Blackburn Wheat
 
 Using flask for the RESTful endpoint. Deploying this to Heroku. Anaconda is the only dependency. Redis to store the computational data.
 
-engine.py - this is the recommendation algorithm.
-rest.py - this is the python code for the two endpoints.
+>engine.py - this is the recommendation algorithm.
+>rest.py - this is the python code for the two endpoints.
 
 endpoint #1 - train, this will call the engine and do all of the similarity measurements.
 endpoint #2 - score, this takes in an item_id, and returns the top 10 most similar items.
