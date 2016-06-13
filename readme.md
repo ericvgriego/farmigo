@@ -1,24 +1,35 @@
-# Content-based Recommendation Engine
+# Farmigo HW #2 -  Recommendation Engine
 
-## Description
+This is my engine. Uses Term Frequency on a included data set of 1,000,000 product transactions.
 
-This is a production-ready, but very simple, content-based recommendation engine that computes similar items based on text descriptions. It comes with a sample data file (the headers of the input file are expected to be identical to the same file -- id, description) of 500 products so you can try it out.
+Note the input file must contain two specific headers: item_id & text
 
-It is a flask-based REST webservice designed to be deployed to Heroku and relies on Anaconda for installation of the scientific computing dependencies, and Redis to store precomputed similarities.
+item_id is a unique identifier for a given product description. product descriptions are detailed in the text values.
+i.e. item_id = 568, text = Vegan Blackburn Wheat
 
-Read the comments in engine.py to see how it works. It's very simple!
+Using flask for the RESTful endpoint. Deploying this to Heroku. Anaconda is the only dependency. Redis to store the computational data.
 
-web.py contains the two endpoints:
+engine.py - this is the recommendation algorithm.
+rest.py - this is the python code for the two endpoints.
 
-1. /train -- calls engine.train() which precomputes item similarities based on their descriptions in sample-data.csv using TF-IDF and cosine similarity.
+endpoint #1 - train, this will call the engine and do all of the similarity measurements.
+endpoint #2 - score, this takes in an item_id, and returns the top 10 most similar items.
+i.e. item_id = 568, text = Vegan Blackburn Wheat will return:
+[(1.0, 568),
+ (0.89635751541381425, 306),
+ (0.21165819268462555, 260),
+ (0.20168037159905644, 493),
+ (0.19994092523250903, 542),
+ (0.18984394573044502, 261),
+ (0.18966874617443436, 314),
+ (0.18475364396234775, 483),
+ (0.184113462118597, 281),
+ (0.18185792405855164, 233),
+ (0.17599054984770088, 53)]
 
-2. /predict -- given an item_id, returns the precomputed 'most similar' items.
+item_id = 306 is "Foccacia Loaf"
 
-## Try it out!
-
-Create a new virtualenv with the needed dependencies. Note this
-
->> conda create -n crec --file conda.txt
+conda create -n crec --file conda.txt
 
 Now, in the virtualenv (``source activate crec``):
 
