@@ -32,7 +32,7 @@ class ContentEngine(object):
     def _train(self, ds):
         
         tf = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0, stop_words='english')
-        tf_matrix = tf.fit_transform(ds['text'])
+        tf_matrix = tf.fit_transform(ds['Text'])
         sim_measure = linear_kernel(tf_matrix, tf_matrix)
 
         for idx, row in ds.iterrows():
