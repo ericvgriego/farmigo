@@ -39,7 +39,7 @@ class ContentEngine(object):
             sim_idx = sim_measure[idx].argsort()[:-12:-1]
             sim_item_id = [(sim_measure[idx][i], test['item_id'][i])
             sim_top10 = sum(sim_item_id[1:], ())
-            self._r.zadd(self.SIMKEY % row['id'], *sim_top10)
+            self._r.zadd(self.SIMKEY % row['item_id'], *sim_top10)
 
     def predict(self, item_n, num):
         return self._r.zrange(self.SIMKEY % item_n, 0, num-1, withscores=True, desc=True)
