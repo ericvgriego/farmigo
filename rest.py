@@ -15,15 +15,15 @@ def token_auth(f):
     return decorated_function
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/score', methods=['POST'])
 @token_auth
-def predict():
-    from engines import content_engine
+def score():
+    from engine import content_engine
     item = request.data.get('item')
-    num_predictions = request.data.get('num', 10)
+    num_scores = request.data.get('num', 10)
     if not item:
         return []
-    return content_engine.predict(str(item), num_predictions)
+    return content_engine.score(str(item), num_scores)
 
 
 @app.route('/train')
@@ -32,7 +32,7 @@ def train():
     from engines import content_engine
     data_url = request.data.get('data-url', None)
     content_engine.train(data_url)
-    return {"message": "Success!", "success": 1}
+    return {"message": "It Works!", "success": 1}
 
 
 if __name__ == '__main__':
