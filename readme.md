@@ -12,9 +12,10 @@ Using flask for the RESTful endpoint. Deploying this to Heroku. Anaconda is the 
 >engine.py - this is the recommendation algorithm.
 >rest.py - this is the python code for the two endpoints.
 
-endpoint #1 - train, this will call the engine and do all of the similarity measurements.
-endpoint #2 - score, this takes in an item_id, and returns the top 10 most similar items.
+*endpoint #1* - train, this will call the engine and do all of the similarity measurements.
+*endpoint #2* - score, this takes in an item_id, and returns the top 10 most similar items.
 i.e. item_id = 568, text = Vegan Blackburn Wheat will return:
+`
 [(1.0, 568),
  (0.89635751541381425, 306),
  (0.21165819268462555, 260),
@@ -26,10 +27,11 @@ i.e. item_id = 568, text = Vegan Blackburn Wheat will return:
  (0.184113462118597, 281),
  (0.18185792405855164, 233),
  (0.17599054984770088, 53)]
+`
 
 item_id = 306 is "Foccacia Loaf"
 
-conda create -n crec --file conda.txt
+>conda create -n crec --file conda.txt
 
 Now, in the virtualenv (``source activate crec``):
 
