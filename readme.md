@@ -40,7 +40,7 @@ item_id = 306 is "Foccacia Loaf"
 
 Now, in the virtualenv (``source activate crec``):
 
->> python web.py
+>> python rest.py
 
 Train the engine:
 
