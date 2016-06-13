@@ -13,8 +13,11 @@ Using flask for the RESTful endpoint. Deploying this to Heroku. Anaconda is the 
 >rest.py - this is the python code for the two endpoints.
 
 *endpoint #1* - train, this will call the engine and do all of the similarity measurements.
+
 *endpoint #2* - score, this takes in an item_id, and returns the top 10 most similar items.
+
 i.e. item_id = 568, text = Vegan Blackburn Wheat will return:
+
 `
 [(1.0, 568),
  (0.89635751541381425, 306),
@@ -31,19 +34,26 @@ i.e. item_id = 568, text = Vegan Blackburn Wheat will return:
 
 item_id = 306 is "Foccacia Loaf"
 
+## How To Run
+
 >conda create -n crec --file conda.txt
 
 Now, in the virtualenv (``source activate crec``):
 
 >> python web.py
 
-Then, in a separate terminal window, train the engine:
+Train the engine:
 
 >> curl -X GET -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" http://127.0.0.1:5000/train -d "{\"data-url\": \"sample-data.csv\"}"
 
-And make a prediction!
+Get the scoring:
 
 >> curl -X POST -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" http://127.0.0.1:5000/predict -d "{\"item\":18,\"num\":10}"
+
+
+
+
+
 
 ## Deploying
 
