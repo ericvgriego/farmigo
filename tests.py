@@ -10,7 +10,7 @@ class ContentEngineTestCase(unittest.TestCase):
         ctx = app.test_request_context()
         ctx.push()
 
-        from engines import content_engine
+        from engine import content_engine
 
         content_engine.train('sample-data.csv')
 
@@ -20,10 +20,10 @@ class ContentEngineTestCase(unittest.TestCase):
         json_data_length = len(json_data)
         headers.append(('Content-Length', str(json_data_length)))
 
-        response = app.test_client().post('/predict', headers=headers, data=json_data)
+        response = app.test_client().post('/score', headers=headers, data=json_data)
         response = json.loads(response.data)
         self.assertEqual(len(response), 10)
-        self.assertEqual(response[0][0], "19")  # Boxers are like boxers.
+        self.assertEqual(response[0][0], "19")
 
 if __name__ == '__main__':
     unittest.main()
