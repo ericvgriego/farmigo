@@ -44,33 +44,8 @@ Now, in the virtualenv (``source activate crec``):
 
 Train the engine:
 
->> curl -X GET -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" http://127.0.0.1:5000/train -d "{\"data-url\": \"sample-data.csv\"}"
+>> curl -X GET -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" https://farmigo.herokuapp.com/train -d "{\"data-url\": \"sample-data.csv\"}"
 
 Get the scoring:
 
->> curl -X POST -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" http://127.0.0.1:5000/predict -d "{\"item\":18,\"num\":10}"
-
-
-
-
-
-
-## Deploying
-
-This engine is designed to be deployed to Heroku. First, create a new app:
-
->> heroku create
-
-You'll then need to set the buildpack for the app to use Anaconda; a packaging system for scientific computing libraries in Python.
-
->> heroku buildpacks:set https://github.com/kennethreitz/conda-buildpack.git
-
-Be sure to set your environmental variables (in settings.py) and provide your own training data. Then just:
-
->> git push heroku master
-
-## Running tests
-
-Well...technically it's running *test*, singular :)
-
->> python -m unittest tests
+>> curl -X POST -H "X-API-TOKEN: FOOBAR1" -H "Content-Type: application/json; charset=utf-8" https://farmigo.herokuapp.com/predict -d "{\"item\":18,\"num\":10}"
